@@ -1,0 +1,41 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <% if @gossip.errors.any? %>
+    <div class="container alert alert-danger mt-3 pt-3 pb-1" role="alert">
+        <p>Error :</p>
+        <ul>
+          <% @gossip.errors.each_with_index do |message, i| %>
+            <li><%= message[1] %></li>
+          <% end %>
+        </ul>
+    </div>
+    <% end %>
+    <div class="container text-center mt-5">
+      <h1 style="color: #053557">Modifier le Gossip n°<%= @gossip.id %> ?</h1>
+
+      <div class="m-5 px-5">
+        <%= form_for @gossip do |f| %>
+          <div class="form-group">
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control' %>
+          </div>
+          <div class="btn-toolbar mx-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group">
+              <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-dark mx-1">Retour</a>
+            </div>
+            <div class="btn-group mr-2" role="group">
+              <button type="submit" class="btn btn-success mx-1">Modifier</button>
+            </div>
+            <div class="btn-group mr-2" role="group">
+              <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-danger mx-1" data-confirm="Êtes-vous sûrs de vouloir le supprimer ?" data-method="DELETE">Supprimer</a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

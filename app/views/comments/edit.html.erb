@@ -1,0 +1,34 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <% if @comment.errors.any? %>
+    <div class="container alert alert-danger mt-3 pt-3 pb-1" role="alert">
+        <p>We could not create a new comment :</p>
+        <ul>
+          <% @comment.errors.each_with_index do |message, i| %>
+            <li><%= message[1] %></li>
+          <% end %>
+        </ul>
+    </div>
+    <% end %>
+    <div class="container text-center mt-5">
+      <h1 style="color: #053557">Modifier le commentaire ?</h1>
+
+      <div class="m-5 px-5">
+        <%= form_tag comment_path, method: "put" do %>
+          <div class="form-group">
+            <%= text_area_tag 'content', @comment.content, class: 'form-control' %>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="submit" class="btn btn-success mx-1">Update</button>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <a href="<%= comment_path(@comment.id) %>" class="btn btn-danger mx-1" data-confirm="Do you want to delete it ?" data-method="DELETE">Supprimer</a>
+          </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

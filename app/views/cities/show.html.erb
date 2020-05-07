@@ -1,0 +1,32 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="container py-5 text-center">
+      <% city = City.find(params['id']) %>
+      <h2 style="color: #053557" class="pb-3">Tous les gossips à <%= city.name %> :</h2>
+      <br/>
+
+      <div class="card-deck">
+        <% city.users.each do |user| %>
+          <% user.gossips.each do |gossip| %>
+            <div class="col-lg-4 col-md-6 mb-3">
+              <div class="card text-left my-3">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= link_to "#{gossip.id}. #{gossip.title}", gossip_path(gossip.id) %>
+                  </h5>
+                  <p class="card-text"><%= gossip.content %></p>
+                </div>
+                <div class="card-footer">
+                  <p class="small text-right text-muted">Posté par <%= link_to "#{gossip.user.first_name}", user_path(gossip.user.id) %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </body>
+</html>

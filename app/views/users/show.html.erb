@@ -1,0 +1,22 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="container py-4 text-center">
+    <% user = User.find(params['id']) %>
+      <h1 style="color: #458795">Profil de <%= user.first_name %> <%= user.last_name %></h1>
+      <br>
+      <div class="card flex-row flex-wrap flex-lg-nowrap mx-5 p-3">
+        <img class="m-auto p-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/512px-Circle-icons-profile.svg.png" alt="profile picture" height="200px" width="200px">
+        <div class="card-body text-left my-auto">
+          <p><b style="color: #053557">Age</b> : <%= user.age %></p>
+          <p><b style="color: #053557">City</b> : <%= link_to "#{user.city.name}", city_path(user.city.id) %></p>
+          <p><b style="color: #053557">Email</b> : <%= user.email %></p><br/>
+          <p><b style="color: #053557">Description</b> :<br/>
+            <%= user.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="container py-5 text-center">
+      <h1 style="color: #053557">My Gossip Project</h1>
+      <br/>
+      <div class="card-deck">
+        <% Gossip.all.each do |gossip| %>
+          <div class="col-lg-4 col-md-6 mb-3">
+            <div class="card text-left my-3">
+              <div class="card-body">
+                <h5 class="card-title bold">
+                  <%= link_to "#{gossip.id}. #{gossip.title}", gossip_path(gossip.id) %>
+                </h5>
+                <p class="card-text"><%= gossip.content %></p>
+              </div>
+              <div class="card-footer">
+                <a href="<%= gossip_path(gossip.id) %>">
+                  <p class="small float-left text-muted"><%= gossip.comments.count %></p> 
+                  <svg class="bi bi-chat-square-dots pl-1" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M14 1H2a1 1 0 00-1 1v8a1 1 0 001 1h2.5a2 2 0 011.6.8L8 14.333 9.9 11.8a2 2 0 011.6-.8H14a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v8a2 2 0 002 2h2.5a1 1 0 01.8.4l1.9 2.533a1 1 0 001.6 0l1.9-2.533a1 1 0 01.8-.4H14a2 2 0 002-2V2a2 2 0 00-2-2H2z" clip-rule="evenodd"/> <path d="M5 6a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
+                </a>
+                <p class="small float-right text-muted">Posté par <%= link_to "#{gossip.user.first_name}", user_path(gossip.user.id) %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </body>
+</html>

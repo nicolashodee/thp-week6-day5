@@ -1,0 +1,55 @@
+<html>
+  <head>
+  </head>
+
+  <body>
+    <% if @user.errors.any? %>
+      <div class="container alert alert-danger mt-3 pt-3 pb-1" role="alert">
+          <p>Error :</p>
+          <ul>
+            <% @user.errors.each_with_index do |message, i| %>
+              <li><%= message[1] %></li>
+            <% end %>
+          </ul>
+      </div>
+    <% end %>
+
+    <div class="container py-5 text-center">
+      <h1 style="color: #053557">Sign up to the Gossip Project</h1>
+
+      <div class="m-5 px-5">
+        <%= form_for @user, class: 'form-horizontal' do |f| %>
+          <div class="form-group">
+            <%= f.text_field :first_name, class: 'form-control', placeholder: 'First name' %> 
+          </div>
+          <div class="form-group">
+            <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last name' %>
+          </div>
+          <div class="form-group">
+            <%= f.collection_select :city_id, City.all, :id, :name, {prompt: "Ville"}, {class: "form-control"} %>
+          </div>
+          <div class="form-group">
+            <%= f.number_field :age, min: 18, max: 199, class: 'form-control', placeholder: 'Age' %>
+          </div>
+          <div class="form-group">
+            <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Re-enter your password' %>
+          </div>
+          
+          <div class="btn-group mr-2" role="group">
+            <button type="submit" class="btn btn-dark mx-1">Register</button>
+          </div>
+         
+        <% end %>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>

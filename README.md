@@ -16,7 +16,7 @@ $ rails db:seed
 
 How to use it?
 
-Aller  : http://localhost:3000/
+go to : http://localhost:3000/
 
 What we can do here:
 
